@@ -1,0 +1,12 @@
+<odoo>
+    <record id="view_form_member_extend" model="ir.ui.view">
+        <field name="name">Library Member Extend</field>
+        <field name="model">library.member</field>
+        <field name="inherit_id" ref="library_member.view_form_member"/>
+        <field name="arch" type="xml">
+            <field name="name" position="before">
+                <field name="card_number" position="move"/>
+            </field>
+        </field>
+    </record>
+</odoo>

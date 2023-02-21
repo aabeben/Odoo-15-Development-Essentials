@@ -1,0 +1,30 @@
+version: '3.1'
+services:
+  web:
+    image: odoo:15.0
+    container_name: odoo15-web
+    depends_on:
+      - mydb
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+      - ./logs:/var/log/odoo
+    environment:
+    - HOST=mydb
+    - USER=odoo
+    - PASSWORD=myodoo
+    networks:
+      - odoo15
+  mydb:
+    image: postgres:13
+    container_name: odoo15-db13
+    networks:
+      - odoo15
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=myodoo
+      - POSTGRES_USER=odoo
+networks:
+  odoo15:
